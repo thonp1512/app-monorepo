@@ -12,7 +12,7 @@ import {
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
 
-import { YStack } from '@onekeyhq/components';
+import { SizableText, Stack, View, YStack } from '@onekeyhq/components';
 import platformEnv from '@onekeyhq/shared/src/platformEnv';
 
 import { PassCodeRegex } from '../utils';
@@ -89,29 +89,28 @@ function BasicPassCodeInput(
     isFocused: boolean;
   }) => {
     const symbolBg = symbol ? '$borderActive' : '$transparent';
-    const bg = editable ? symbolBg : '$borderDisabled';
     const borderColor = editable ? '$borderActive' : '$transparent';
     return (
-      <Text
+      <View
         key={index}
-        style={[...[cellStyles.cell]]}
-        onLayout={getCellOnLayoutHandler(index)}
+        w="14%"
+        height={64}
+        justifyContent="center"
+        alignItems="center"
+        backgroundColor="white"
+        borderWidth={1}
+        borderRadius={12}
+        borderColor={borderColor}
       >
-        <YStack
-          w="$4"
-          h="$4"
-          backgroundColor={bg}
-          borderWidth={1}
-          borderRadius="$full"
-          borderColor={borderColor}
-          {...(platformEnv.isNativeAndroid
-            ? {
-                renderToHardwareTextureAndroid: true,
-                overflow: 'hidden',
-              }
-            : {})}
-        />
-      </Text>
+        <SizableText
+          fontSize="$heading2xl"
+          textAlign="center"
+          color="#0E121B"
+          lh={32}
+        >
+          {symbol}
+        </SizableText>
+      </View>
     );
   };
   useEffect(() => {
@@ -134,10 +133,10 @@ function BasicPassCodeInput(
       testID={testId}
       ref={pinInputRef}
       rootStyle={{
-        flex: 1,
         paddingVertical: 32,
         alignSelf: 'center',
-        width: 200,
+        justifyContent: 'center',
+        gap: 6,
       }}
       value={pinValue}
       onChangeText={(text) => {

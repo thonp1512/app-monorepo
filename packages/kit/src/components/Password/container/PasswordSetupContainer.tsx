@@ -8,6 +8,7 @@ import {
   SizableText,
   Stack,
   Toast,
+  View,
   XStack,
 } from '@onekeyhq/components';
 import backgroundApiProxy from '@onekeyhq/kit/src/background/instance/backgroundApiProxy';
@@ -28,6 +29,7 @@ import { useWebAuthActions } from '../../BiologyAuthComponent/hooks/useWebAuthAc
 import PasswordSetup from '../components/PasswordSetup';
 
 import type { IPasswordSetupForm } from '../components/PasswordSetup';
+import deviceUtils from '@onekeyhq/shared/src/utils/deviceUtils';
 
 interface IPasswordSetupProps {
   onSetupRes: (password: string) => void;

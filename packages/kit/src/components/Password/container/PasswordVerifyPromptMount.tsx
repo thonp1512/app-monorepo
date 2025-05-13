@@ -12,6 +12,7 @@ import { EPasswordPromptType } from '@onekeyhq/shared/types/password';
 
 import PasswordSetupContainer from './PasswordSetupContainer';
 import PasswordVerifyContainer from './PasswordVerifyContainer';
+import { Dimensions } from 'react-native';
 
 const PasswordVerifyPromptMount = () => {
   const intl = useIntl();
@@ -26,11 +27,13 @@ const PasswordVerifyPromptMount = () => {
 
   const showPasswordSetupPrompt = useCallback(
     (id: number) => {
+      const screenHeight = Dimensions.get('screen').height;
+
       dialogRef.current = Dialog.show({
-        title: intl.formatMessage({ id: ETranslations.global_set_passcode }),
         onClose() {
           onClose(id);
         },
+        estimatedContentHeight: screenHeight * 0.85,
         renderContent: (
           <Suspense fallback={<Spinner size="large" />}>
             <PasswordSetupContainer
@@ -48,7 +51,7 @@ const PasswordVerifyPromptMount = () => {
         showFooter: false,
       });
     },
-    [intl, onClose],
+    [onClose],
   );
   const showPasswordVerifyPrompt = useCallback(
     (id: number, dialogProps?: IDialogShowProps) => {
