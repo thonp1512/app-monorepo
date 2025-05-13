@@ -111,6 +111,7 @@ export function Actions() {
       py="$6"
       px="$5"
       gap="$2.5"
+      pb="$8"
       $gtMd={{
         maxWidth: '$96',
       }}
@@ -118,32 +119,24 @@ export function Actions() {
       w="100%"
     >
       <Action
-        iconName="UsbOutline"
-        label={intl.formatMessage({
-          id: ETranslations.global_connect_hardware_wallet,
-        })}
-        primary
-        onPress={handleConnectHardwareWallet}
-        testID="hardware-wallet"
+        label="Create new wallet"
+        onPress={handleCreateWalletPress}
+        testID="onboarding-create-wallet"
+        br={999}
+        bg="#fff"
+        textFont="$bodyLg"
+        textWeight="bold"
       />
 
-      <ActionList
-        placement="top"
-        floatingPanelProps={{
-          width: 344,
-        }}
-        title={intl.formatMessage({
-          id: ETranslations.onboarding_create_or_import_wallet,
-        })}
-        renderTrigger={
-          <Action
-            label={intl.formatMessage({
-              id: ETranslations.onboarding_create_or_import_wallet,
-            })}
-            testID="onboarding-create-or-import-wallet"
-          />
-        }
-        {...(platformEnv.isWebDappMode ? { items } : { sections })}
+      <Action
+        label="Import wallet"
+        onPress={handleImportWalletPress}
+        testID="onboarding-import-wallet"
+        br={999}
+        bg="rgba(153, 160, 174, 0.3)"
+        primary
+        textFont="$bodyLg"
+        textWeight="bold"
       />
     </Stack>
   );

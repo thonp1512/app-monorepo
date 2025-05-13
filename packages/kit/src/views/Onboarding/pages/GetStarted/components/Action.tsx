@@ -1,15 +1,29 @@
 import type { IKeyOfIcons, IXStackProps } from '@onekeyhq/components';
 import { Icon, SizableText, Spinner, XStack } from '@onekeyhq/components';
 
+import type { FontSizeTokens, GetThemeValueForKey } from 'tamagui';
+
 type IAction = {
   iconName?: IKeyOfIcons;
   label: string;
   primary?: boolean;
   isLoading?: boolean;
+  textFont?: FontSizeTokens;
+  textWeight?: GetThemeValueForKey<'fontWeight'>;
 } & IXStackProps;
 
 export function Action(props: IAction) {
-  const { iconName, label, primary, isLoading, onPress, testID } = props;
+  const {
+    iconName,
+    label,
+    primary,
+    isLoading,
+    onPress,
+    testID,
+    textFont,
+    textWeight,
+    ...rest
+  } = props;
 
   return (
     <XStack
@@ -40,6 +54,7 @@ export function Action(props: IAction) {
       alignItems="center"
       justifyContent="center"
       gap="$1.5"
+      {...rest}
     >
       {iconName ? (
         <Icon
@@ -49,8 +64,10 @@ export function Action(props: IAction) {
         />
       ) : null}
       <SizableText
-        size="$bodyLgMedium"
+        size={textFont || '$bodyLgMedium'}
         color={primary ? '$textInverse' : '$text'}
+        fontWeight={textWeight}
+        ls={-0.36}
       >
         {label}
       </SizableText>

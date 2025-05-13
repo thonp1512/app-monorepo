@@ -20,7 +20,7 @@ export function GetStarted({
 }: IPageScreenProps<IOnboardingParamList, EOnboardingPages.GetStarted>) {
   const { isFullModal, fromExt } = route.params || {};
   const { top: topInset } = useSafeAreaInsets();
-  let top = isFullModal ? topInset : '$5';
+  let top = '$10';
 
   if (fromExt) {
     top = '$5';
@@ -35,16 +35,18 @@ export function GetStarted({
   return (
     <Page safeAreaEnabled>
       <Page.Header headerShown={false} />
-      <Page.Body bg="$background">
+      <Page.Body bg="#000">
         <Welcome />
 
         <Actions />
 
-        <TermsAndPrivacy />
-
-        <View position="absolute" left="$5" top={top}>
+        <View position="absolute" right="$5" top={top}>
           <Page.Close>
-            <IconButton icon="CrossedLargeOutline" variant="tertiary" />
+            <IconButton
+              icon="CrossedLargeOutline"
+              variant="tertiary"
+              iconColor="$whiteA9"
+            />
           </Page.Close>
         </View>
       </Page.Body>

@@ -103,7 +103,7 @@ export const IconButton = (props: IIconButtonProps) => {
         </Stack>
       ) : (
         <Icon
-          color={iconColor}
+          color={props?.iconColor || iconColor}
           name={icon}
           size={iconSize || (size === 'small' ? '$5' : '$6')}
           {...iconProps}
